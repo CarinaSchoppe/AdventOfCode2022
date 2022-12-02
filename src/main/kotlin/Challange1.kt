@@ -12,7 +12,22 @@ fun main(){
         elfMap[index+1]=sum
     }
 
-    println(elfMap.maxBy { it.value })
+
+    //Get three values with the highest sum
+
+    println(elfMap)
+    println(elfMap.maxBy { item -> item.value })
+    var tops = mutableSetOf<Int>()
+    tops.add(elfMap.maxBy { item -> item.value }.value)
+    elfMap.remove(elfMap.maxBy { item -> item.value }.key)
+
+    tops.add(elfMap.maxBy { item -> item.value }.value)
+    elfMap.remove(elfMap.maxBy { item -> item.value }.key)
+
+    tops.add(elfMap.maxBy { item -> item.value }.value)
+    elfMap.remove(elfMap.maxBy { item -> item.value }.key)
+
+    println(tops.stream().mapToInt { it }.sum())
 }
 
 
