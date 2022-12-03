@@ -1,10 +1,16 @@
 fun main() {
-    var lines = object {}.javaClass.getResourceAsStream("challenge2.txt")?.bufferedReader()?.readLines()
+    val lines = object {}.javaClass.getResourceAsStream("challenge2.txt")?.bufferedReader()?.readLines()
     val rounds = lines?.map {
-        Pair<String, String>(it.split(" ")[0], it.split(" ")[1])
+        Pair(it.split(" ")[0], it.split(" ")[1])
     }
+    val sum = part1(rounds!!)
+    val sum2 = part2(rounds!!)
+    print(sum)
+}
+
+fun part1(rounds: List<Pair<String, String>>): Int {
     var sum = 0
-    rounds?.forEach {
+    rounds.forEach {
         val opponent = it.first
         val mine = it.second
         //mine, opponent
@@ -27,9 +33,12 @@ fun main() {
         }
 
     }
-    print(sum)
+    return sum
 }
 
+fun part2(rounds: List<Pair<String, String>>): Int {
+    return 0
+}
 
 
 
