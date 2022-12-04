@@ -4,8 +4,9 @@ fun main() {
         Pair(it.split(" ")[0], it.split(" ")[1])
     }
     val sum = part1(rounds!!)
-    val sum2 = part2(rounds!!)
-    print(sum)
+    val sum2 = part2(rounds)
+    println(sum)
+    println(sum2)
 }
 
 fun part1(rounds: List<Pair<String, String>>): Int {
@@ -36,8 +37,37 @@ fun part1(rounds: List<Pair<String, String>>): Int {
     return sum
 }
 
+
+//A,B,C - rock paper sissors
 fun part2(rounds: List<Pair<String, String>>): Int {
-    return 0
+    //X = lose y  = draw z = win
+
+    var sum = 0
+    rounds.forEach {
+        val kind = it.second
+        val opponent = it.first
+        sum += when (kind) {
+            "X" -> 0
+            "Y" -> 3
+            "Z" -> 6
+            else -> 0
+        }
+        sum += when (opponent to kind) {
+
+            "A" to "X" -> 3
+            "A" to "Y" -> 1
+            "A" to "Z" -> 2
+            "B" to "X" -> 1
+            "B" to "Y" -> 2
+            "B" to "Z" -> 3
+            "C" to "X" -> 2
+            "C" to "Y" -> 3
+            "C" to "Z" -> 1
+            else -> 0
+        }
+    }
+    return sum
+
 }
 
 
