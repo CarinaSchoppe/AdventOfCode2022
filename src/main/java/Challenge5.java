@@ -1,9 +1,13 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Challenge5 {
+
+    public static boolean part1 = true;
 
     public static void main(String[] args) throws IOException {
         //read in the file
@@ -47,6 +51,66 @@ public class Challenge5 {
         for (var i = 0; i < pileArray.length; i++) {
             pileArray[i] = pileArray[i].substring(0, pileArray[i].length() - 1);
         }
-        System.out.println(pileArray[3]);
+
+
+        var jobs = new ArrayList<HashMap<String, Integer>>();
+
+
+        reader = new BufferedReader(new InputStreamReader(Challenge5.class.getResourceAsStream("challenge5.txt")));
+
+        while ((line = reader.readLine()) != null) {
+            if (!line.startsWith("m")) continue;
+
+            var points = line.split(" ");
+            var job = new HashMap<String, Integer>();
+            job.put(points[0], Integer.parseInt(points[1]));
+            job.put(points[2], Integer.parseInt(points[3]) - 1);
+            job.put(points[4], Integer.parseInt(points[5]) - 1);
+            jobs.add(job);
+
+        }
+
+        System.out.println(jobs.get(1).get("move"));
+
+        for (var job : jobs) {
+            var amountMove = job.get("move");
+            int from = job.get("from");
+            var to = job.get("to");
+
+            System.out.println("Moving from: " + (from + 1) + " to " + (to + 1) + " amount: " + amountMove);
+
+
+            //For part 1
+            if (part1) {
+                for (var i = 0; i < amountMove; i++) {
+                    var letter = pileArray[from].substring(0, 1);
+                    System.out.println("letter: " + letter);
+                    pileArray[from] = pileArray[from].substring(1, pileArray[from].length());
+                    System.out.println("pileArray: " + pileArray[from]);
+                    pileArray[to] = letter + pileArray[to];
+                    System.out.println("pileArrayNew: " + pileArray[to]);
+                }
+            } else {
+                //for part 2
+                var letter = pileArray[from].substring(0, amountMove);
+                System.out.println("letter: " + letter);
+                pileArray[from] = pileArray[from].substring(amountMove, pileArray[from].length());
+                System.out.println("pileArray: " + pileArray[from]);
+                pileArray[to] = letter + pileArray[to];
+                System.out.println("pileArrayNew: " + pileArray[to]);
+            }
+
+
+        }
+
+        for (var string : pileArray) {
+            System.out.println(string);
+        }
+
+        System.out.println("Loesung");
+        for (var string : pileArray) {
+            System.out.print(string.toCharArray()[0]);
+        }
+
     }
 }
