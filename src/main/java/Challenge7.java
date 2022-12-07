@@ -21,8 +21,10 @@ public class Challenge7 {
                     var dir = new Directory(null, folderName);
                     tree.setRootDir(dir);
                     currentDir = tree.getRootDir();
+                    System.out.println("Created and set rootdir as: " + folderName);
                     continue;
                 }
+                System.out.println("Going to set current directory to:" + folderName);
                 currentDir = currentDir.getSubDirectory(folderName);
 
             } else if (line.equals("$ cd ..")) {
@@ -36,9 +38,13 @@ public class Challenge7 {
                     var file = new File(fileSize, fileName);
                     assert currentDir != null;
                     currentDir.getFiles().add(file);
+                    System.out.println("Added new file: " + fileName + " with size: " + fileSize);
                 } else {
                     var dir = new Directory(currentDir, line.replace("dir ", ""));
+                    System.out.println("Going to add a new subdirectory to current dir: " + currentDir.name + " subdir name: " + dir.name);
+
                     currentDir.getSubdirectories().add(dir);
+
                 }
             }
         }
