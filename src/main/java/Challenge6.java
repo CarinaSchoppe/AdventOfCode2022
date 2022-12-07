@@ -4,10 +4,10 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Challange6 {
+public class Challenge6 {
 
     public static void main(String[] args) throws IOException {
-        var reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(Challange6.class.getResourceAsStream("challenge6.txt"))));
+        var reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(Challenge6.class.getResourceAsStream("challenge6.txt"))));
         String line = reader.readLine();
         var charArray = line.toCharArray();
         var preAmount = 0;
