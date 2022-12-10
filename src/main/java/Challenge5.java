@@ -26,14 +26,11 @@ public class Challenge5 {
         }
 
         var amount = (length + 1) / 4;
-
         var pileArray = new String[amount];
-
 
         for (int i = 0; i < amount; i++) {
             pileArray[i] = "";
         }
-
         reader = new BufferedReader(new InputStreamReader(Challenge5.class.getResourceAsStream("challenge5.txt")));
 
         while (!Objects.equals(line = reader.readLine(), "")) {
@@ -41,26 +38,18 @@ public class Challenge5 {
                 var character = line.toCharArray()[i + 1];
                 if (character != ' ') {
                     pileArray[i / 4] += character;
-
                 }
             }
-
-
         }
-
         for (var i = 0; i < pileArray.length; i++) {
             pileArray[i] = pileArray[i].substring(0, pileArray[i].length() - 1);
         }
 
-
         var jobs = new ArrayList<HashMap<String, Integer>>();
-
-
         reader = new BufferedReader(new InputStreamReader(Challenge5.class.getResourceAsStream("challenge5.txt")));
 
         while ((line = reader.readLine()) != null) {
             if (!line.startsWith("m")) continue;
-
             var points = line.split(" ");
             var job = new HashMap<String, Integer>();
             job.put(points[0], Integer.parseInt(points[1]));
@@ -78,7 +67,6 @@ public class Challenge5 {
             var to = job.get("to");
 
             System.out.println("Moving from: " + (from + 1) + " to " + (to + 1) + " amount: " + amountMove);
-
 
             //For part 1
             if (part1) {
@@ -99,8 +87,6 @@ public class Challenge5 {
                 pileArray[to] = letter + pileArray[to];
                 System.out.println("pileArrayNew: " + pileArray[to]);
             }
-
-
         }
 
         for (var string : pileArray) {
@@ -111,6 +97,5 @@ public class Challenge5 {
         for (var string : pileArray) {
             System.out.print(string.toCharArray()[0]);
         }
-
     }
 }
